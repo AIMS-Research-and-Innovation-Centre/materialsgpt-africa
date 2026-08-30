@@ -189,14 +189,14 @@ document.querySelectorAll('.card,.track,.phase,.prize,.mission,.step').forEach(e
 
 <script type="module">
 // Firebase Firestore integration for GitHub Pages/static hosting.
-// Replace the placeholder values with the Firebase web app config from your Firebase project settings.
 const firebaseConfig = {
-  apiKey: "PASTE_FIREBASE_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_PROJECT_ID",
-  storageBucket: "PASTE_PROJECT_ID.appspot.com",
-  messagingSenderId: "PASTE_SENDER_ID",
-  appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyBAlz95r9UN3nh_aboYN57DQFd-npOmTvc",
+  authDomain: "materialsgpt.firebaseapp.com",
+  projectId: "materialsgpt",
+  storageBucket: "materialsgpt.firebasestorage.app",
+  messagingSenderId: "123872073212",
+  appId: "1:123872073212:web:bbec2a9711e423c6444e79",
+  measurementId: "G-T1H4FHJDWX"
 };
 
 const challengeForm = document.getElementById('challengeForm');
@@ -209,18 +209,18 @@ const challengeLockNotice = document.getElementById('challengeLockNotice');
 const teamLockNotice = document.getElementById('teamLockNotice');
 const firebaseReady = firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('PASTE_');
 
-// Submission window in CAT (UTC+2): forms open 1 June 2026 and close 28 August 2026.
+// Submission window in CAT (UTC+2): forms open 1 June 2026 and close 16 October 2026.
 const SUBMISSIONS_OPEN = new Date('2026-06-01T00:00:00+02:00');
-const SUBMISSIONS_CLOSE = new Date('2026-08-28T23:59:59+02:00');
+const SUBMISSIONS_CLOSE = new Date('2026-10-16T23:59:59+02:00');
 function getSubmissionWindowState(){
   const now = new Date();
   if(now < SUBMISSIONS_OPEN){
     return { locked:true, reason:'early', message:'Applications open on 1 June 2026. Challenge proposals, coaching applications, and team applications are locked until then.' };
   }
   if(now > SUBMISSIONS_CLOSE){
-    return { locked:true, reason:'closed', message:'Applications closed on 28 August 2026 at 23:59 CAT. New challenge proposals, coaching applications, and team applications are no longer accepted through this form.' };
+    return { locked:true, reason:'closed', message:'Applications closed on 16 October 2026 at 23:59 CAT. New challenge proposals, coaching applications, and team applications are no longer accepted through this form.' };
   }
-  return { locked:false, reason:'open', message:'Applications are open until 28 August 2026 at 23:59 CAT.' };
+  return { locked:false, reason:'open', message:'Applications are open until 16 October 2026 at 23:59 CAT.' };
 }
 function applySubmissionWindowLock(){
   const state = getSubmissionWindowState();
