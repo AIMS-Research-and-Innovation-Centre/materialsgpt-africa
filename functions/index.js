@@ -3,7 +3,6 @@ const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { defineString } = require("firebase-functions/params");
 const { initializeApp } = require("firebase-admin/app");
 const { FieldValue } = require("firebase-admin/firestore");
-const { google } = require("googleapis");
 
 initializeApp();
 
@@ -17,14 +16,19 @@ const functionOptions = {
   timeoutSeconds: 60
 };
 
-const sheetsAuth = new google.auth.GoogleAuth({
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"]
-});
-
+let sheetsAuth;
 let sheetsClient;
 
 async function getSheetsClient() {
+  if (!sheetsAuth) {
+    const { google } = require("googleapis");
+    sheetsAuth = new google.auth.GoogleAuth({
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"]
+    });
+  }
+
   if (!sheetsClient) {
+    const { google } = require("googleapis");
     const authClient = await sheetsAuth.getClient();
     sheetsClient = google.sheets({
       version: "v4",
