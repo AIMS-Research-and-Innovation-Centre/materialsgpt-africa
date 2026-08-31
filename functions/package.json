@@ -1,0 +1,18 @@
+{
+  "name": "materialsgpt-africa-functions",
+  "description": "Firestore to Google Sheets sync for MaterialsGPT Africa applications.",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "lint": "node --check index.js",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.0.0",
+    "googleapis": "^144.0.0"
+  }
+}
